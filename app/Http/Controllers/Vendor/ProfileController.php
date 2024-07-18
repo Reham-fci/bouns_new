@@ -66,6 +66,18 @@ class ProfileController extends BaseController
         return view(Profile::UPDATE[VIEW],compact('vendor','shopBanner'));
     }
 
+    public function updateAddition($id , Request $request){
+
+        if (auth('seller')->id() != $id) {
+            Toastr::warning(translate('you_can_not_change_others_profile'));
+            return redirect()->back();
+        }
+
+        $vendor = $this->vendorRepo->getFirstWhere(['id'=>auth('seller')->id()]);
+        $this->vendorRepo->update(id:$id,data: $this->vendorService->getVendorAdditionDataForUpdate(request:$request,vendor:$vendor));
+        return back()->with(['message'=>translate('profile_updated_successfully')]);
+    }
+
     /**
      * @param VendorRequest $request
      * @param string|int $id

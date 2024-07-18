@@ -260,6 +260,7 @@ Route::group(['prefix' => 'vendor', 'as' => 'vendor.'], function () {
                 Route::get(Profile::INDEX[URI], 'index')->name('index');
                 Route::get(Profile::UPDATE[URI] . '/{id}', 'getUpdateView')->name('update');
                 Route::post(Profile::UPDATE[URI] . '/{id}', 'update');
+                Route::post(Profile::UPDATE[URI] . '/{id}', 'updateAddition')->name('update-addition');
                 Route::patch(Profile::UPDATE[URI] . '/{id}', 'updatePassword');
                 Route::get(Profile::BANK_INFO_UPDATE[URI] . '/{id}', 'getBankInfoUpdateView')->name('update-bank-info');
                 Route::post(Profile::BANK_INFO_UPDATE[URI] . '/{id}', 'updateBankInfo');

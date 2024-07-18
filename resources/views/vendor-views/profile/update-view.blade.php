@@ -52,6 +52,11 @@
                                     <i class="tio-lock-outlined nav-icon"></i> {{ translate('password') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2 m-0 py-3" href="javascript:" id="addition-section">
+                                    <i class="tio-user-outlined nav-icon"></i> {{ translate('addition_Information') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -254,7 +259,117 @@
                         </form>
                     </div>
                 </div>
+
+                <form action="{{ route('vendor.profile.update-addition',[$vendor->id]) }}" method="post"
+                      enctype="multipart/form-data" id="update-profile-form">
+                    @csrf
+                    <div class="card mb-3 mb-lg-5" id="addition-div">
+                        <div class="card-header">
+                            <div class="d-flex align-items-center gap-3">
+                                <div><img src="{{ dynamicAsset(path: 'public/assets/back-end/img/icons/user-1.svg') }}" alt=""></div>
+                                <h4 class="card-title m-0 fs-16">{{translate('addition_Information')}}</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label for="firstNameLabel" class="input-label mb-0">
+                                            {{translate('holidays')}}
+                                            <span class="text-danger px-1">*</span>
+                                        </label>
+                                        <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" data-placement="right" title="" data-original-title="{{ translate('this_will_be_displayed_as_your_holidays') }}">
+                                            <img alt="" width="16" src={{dynamicAsset(path: 'public/assets/back-end/img/info-circle.svg') }} alt="">
+                                        </span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="input-group input-group-sm-down-break">
+                                            <select id="days" name="days[]" class="js-select2-custom form-control" aria-label="Default select example" multiple>
+                                                <option value="Monday">Monday</option>
+                                                <option value="Tuesday">Tuesday</option>
+                                                <option value="Wednesday">Wednesday</option>
+                                                <option value="Thursday">Thursday</option>
+                                                <option value="Friday">Friday</option>
+                                                <option value="Saturday">Saturday</option>
+                                                <option value="Sunday">Sunday</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label for="lastNameLabel" class="input-label mb-0">
+                                            {{translate('payment methods')}}
+                                            <span class="text-danger px-1">*</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="input-group input-group-sm-down-break">
+                                            <select id="payments" name="payments[]" class="js-select2-custom form-control" aria-label="Default select example" multiple>
+                                                <option value="cash">كاش</option>
+                                                <option value="balance">رصيد بونص</option>
+                                                <option value="installment">تقسيط</option>
+                                                <option value="charging">شحن المحفظه</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label for="" class="input-label mb-0">
+                                            أوقات التوصيل المعتادة
+{{--                                            <span class="input-label-secondary">--}}
+{{--                                                ({{translate('optional')}})--}}
+{{--                                            </span>--}}
+                                        </label>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <input class="form-control form-control "
+                                               type="text" id="" value="" name="shipping_time"
+                                               placeholder="{{ translate('ex') }}: {{ translate('تسليم الطلبات بعد الساعة 5 المغرب إلي 5 الفجر') }}" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <label for="newEmailLabel" class="input-label mb-0">
+                                            نظام المرتجع
+                                            <span class="text-danger px-1">*</span>
+                                        </label>
+
+                                        <span class="input-label-secondary cursor-pointer" data-toggle="tooltip" data-placement="right" title="" data-original-title="{{ translate('') }}">
+                                            <img alt="" width="16" src={{dynamicAsset(path: 'public/assets/back-end/img/info-circle.svg') }} alt="">
+                                        </span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" name="returned" id="newEmailLabel"
+                                               value=""
+                                               placeholder="{{ translate('ex') }}: {{ 'قبل إنتهاء الصلاحية ب 15 يوم' }}">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="d-none" id="select-img">
+                                <input type="file" name="image" id="custom-file-upload" class="custom-file-input image-input"
+                                       data-image-id="viewer"
+                                       accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit"  data-message="{{ translate('want_to_update_vendor_info').'?'}}" class="btn btn--primary {{env('APP_MODE')!='demo'?'form-submit':'call-demo'}}">{{ translate('save_Changes') }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
+
         </div>
     </div>
 @endsection

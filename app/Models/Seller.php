@@ -58,6 +58,10 @@ class Seller extends Authenticatable
         'minimum_order_amount',
         'free_delivery_status',
         'app_language',
+        'returned',
+        'holidays',
+        'shipping_time',
+        'payment_method',
     ];
 
     protected $casts = [

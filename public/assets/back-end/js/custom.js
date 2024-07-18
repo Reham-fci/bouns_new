@@ -896,6 +896,18 @@ $("#password-section").click(function () {
     );
 });
 
+$("#addition-section").click(function () {
+    $("#general-section").removeClass("active");
+    $("#password-section").removeClass("active");
+    $("#addition-section").addClass("active");
+    $("html, body").animate(
+        {
+            scrollTop: $("#addition-div").offset().top,
+        },
+        2000
+    );
+});
+
 $(".image-preview-before-upload").on("change", function () {
     let getElementId = $(this).data("preview");
     $(getElementId).attr("src", window.URL.createObjectURL(this.files[0]));

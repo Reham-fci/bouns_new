@@ -84,6 +84,16 @@ class VendorService
         ];
     }
 
+    public function getVendorAdditionDataForUpdate(object $request, object $vendor):array
+    {
+        return [
+            'payment_method' => $request['payments'],
+            'shipping_time' => $request['shipping_time'],
+            'holidays' => $request['days'],
+            'returned' => $request['returned'],
+        ];
+    }
+
     /**
      * @return array[password: string]
      */
